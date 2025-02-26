@@ -9,14 +9,20 @@ import "./App.css";
 function App() {
   return (
     <>
-    
-      <Header />
-      <Content/>
-      <Services/>
-      <Stats/>
-      <Gallary/>
-      <MenuLink/>
-      <Footer/>
+      <div className="container">
+        <Header />
+        <Content />
+        <Services />
+        <Stats />
+        <hr />
+        <div className="row column">
+          <h3>Our Recent Work</h3>
+        </div>
+        <Gallary />
+        <hr />
+        <MenuLink />
+        <Footer />
+      </div>
     </>
   );
 }
