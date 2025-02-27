@@ -7,22 +7,10 @@ import MenuLink from "./components/MenuLink";
 import Stats from "./components/Stats";
 import "./App.css";
 function App() {
-
-const HeaderData={
-  title:"Changing the World Through Coding",
-  desc:"This is My Second Project on React"
-}
-
-
-
-
-
-
-
   return (
     <>
       <div className="container">
-        <Header headerProps={HeaderData}/>
+        <Header />
         <Content />
         <Services />
         <Stats />

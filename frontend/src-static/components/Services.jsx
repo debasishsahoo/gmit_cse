@@ -18,11 +18,6 @@ const Services = () => {
         <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam
           eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna.</p>
       </div>
-      <div className="service">
-        <h3>React</h3>
-        <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam
-          eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna.</p>
-      </div>
     </div>
   )
 }
