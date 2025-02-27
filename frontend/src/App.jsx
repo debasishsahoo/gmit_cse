@@ -13,17 +13,17 @@ const HeaderData={
   desc:"This is My Second Project on React"
 }
 
-
-
-
-
-
-
+const ContentData={
+  title:"Our Agency, our selves.",
+  desc:"This is a Description of Content",
+  imgUrl:"https://dummyimage.com/600x400/000/fff",
+  altText:"Agency Image"
+}
   return (
     <>
       <div className="container">
         <Header headerProps={HeaderData}/>
-        <Content />
+        <Content contentProps={ContentData}/>
         <Services />
         <Stats />
         <hr />
