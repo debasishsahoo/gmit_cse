@@ -1,5 +1,6 @@
 import PropsBasic from "./components/01-PropsBasic";
 import ValueProps from "./components/02-ValueProps";
+import PropsPass from './components/03-PropsPass'
 import "./App.css";
 function App() {
 let dType='template'+2.0
@@ -17,6 +18,8 @@ let anyData="This"+"is Javascript"+dType+"Called template"
       jsxData={2+2+2+14-3-(2/3)*(23*5)}
       anyData={anyData}
       />
+
+      <PropsPass students={['Arnab','Atanu','Supriya','Shibham','Karan','devjani','Anish']}/>
     </>
   );
 }
