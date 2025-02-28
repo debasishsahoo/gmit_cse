@@ -8,7 +8,7 @@ let anyData="This"+"is Javascript"+{dType}+"Called template"
     <>
       <PropsBasic name="Debasish" title="Sahoo" />
 
-      <ValueProps 
+      <ValueProps
       strData="This is String data"
       numData={123}
       boolData={false}
