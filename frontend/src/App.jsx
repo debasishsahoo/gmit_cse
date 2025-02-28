@@ -3,7 +3,7 @@ import ValueProps from "./components/02-ValueProps";
 import "./App.css";
 function App() {
 let dType='template'+2.0
-let anyData="This"+"is Javascript"+{dType}+"Called template"
+let anyData="This"+"is Javascript"+dType+"Called template"
   return (
     <>
       <PropsBasic name="Debasish" title="Sahoo" />
