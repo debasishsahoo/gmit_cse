@@ -10,7 +10,15 @@ const userController = {
       res.status(400).json({ error: error.message });
   }
   },
-  signIn: async (req, res) => {},
+  signIn: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const token = await userServices.LOGIN(email, password);
+      res.status(200).json({ message: "Login successful", token });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
   signOut: async (req, res) => {},
   changePassword: async (req, res) => {},
   getUser: async (req, res) => {},
