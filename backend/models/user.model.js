@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
+const SALT = parseInt(process.env.SALT, 10);
 
 const userSchema = new mongoose.Schema({
   name: { 
@@ -33,6 +36,25 @@ const userSchema = new mongoose.Schema({
     match: [/^\d{10}$/, "Phone number must be 10 digits"],
   },
 });
+
+
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, SALT);
+  next();
+});
+
+// Method to compare passwords
+userSchema.methods.comparePassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Remove password before returning user object
+userSchema.methods.toJSON = function () {
+  const userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
+};
 
 const userModel = mongoose.model("User", userSchema);
 
