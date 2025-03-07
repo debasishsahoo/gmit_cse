@@ -129,4 +129,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-bk1/
+.bk1/
