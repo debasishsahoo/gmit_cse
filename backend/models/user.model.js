@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const SALT = parseInt(process.env.SALT, 10);
+const SECRET_KEY = process.env.JWT_SECRET
 
 const userSchema = new mongoose.Schema({
   name: { 
