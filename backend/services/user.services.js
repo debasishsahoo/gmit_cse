@@ -26,10 +26,34 @@ const userServices = {
       expiresIn: "1h",
     });
   },
-  VIEW_ALL: async () => {},
-  VIEW_SINGLE: async () => {},
-  UPDATE: async () => {},
-  DELETE: async () => {},
+  CHANGE_PASSWORD:async(userId, oldPassword, newPassword)=>{
+    const user = await userModel.findById(userId).select("+password");
+    if (!user) throw new Error("User not found");
+
+    // Compare old password
+    const isMatch = await userModel.comparePassword(oldPassword);
+    if (!isMatch) throw new Error("Incorrect old password");
+
+    // Update password (hashing happens in the model)
+    user.password = newPassword;
+    await user.save();
+  },
+
+
+
+
+
+
+  VIEW_ALL: async () => {
+    return await userModel.find().select("-password");
+  },
+  VIEW_SINGLE: async (id) => {
+    const user = await userModel.findById(id).select("-password");
+    if (!user) throw new Error("User not found");
+    return user;
+  },
+  UPDATE: async (id) => {},
+  DELETE: async (id) => {return await userModel.findByIdAndDelete(id);},
 };
 
 module.exports = userServices;
