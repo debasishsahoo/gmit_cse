@@ -1,11 +1,22 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <div>
+      <h2>Login</h2>
 
-export default Login
+      <form>
+        <input type="email" name="email" placeholder="Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Signin</button>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
