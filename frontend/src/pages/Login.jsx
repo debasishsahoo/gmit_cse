@@ -14,7 +14,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signIn(user);
+      const {data}=await signIn(user);
+      localStorage.setItem("token", data.token);
       alert("login successful!");
       navigate("/dashboard");
     } catch (error) {
