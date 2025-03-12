@@ -5,6 +5,7 @@ const userRouter = require("./routers/user.routers");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const { logger } = require("./middlewares/auth.middleware");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
@@ -13,6 +14,7 @@ const HOST = process.env.HOST;
 const server = express();
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+server.use(logger);
 
 // ✅ Enable CORS
 server.use(
