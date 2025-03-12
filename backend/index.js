@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors"); // Import CORS
 const connectDB = require("./configs/db.mongo.conn");
 const userRouter = require("./routers/user.routers");
+const productRouter = require("./routers/product.routes");
 
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -44,6 +45,7 @@ server.use(
 
 
 server.use("/api/user", userRouter);
+server.use("/api/product", productRouter);
 
 connectDB();
 server.listen(PORT, () => {
