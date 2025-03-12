@@ -5,7 +5,8 @@ const userController=require('../controllers/user.controller')
 router.post('/signup',userController.signUp);
 router.post('/signin',userController.signIn);
 router.post('/signout',userController.signOut);
-router.post('/changepassword',userController.changePassword);
-router.post('/user',userController.getUser);
+router.put('/changepassword',userController.changePassword);
+router.get('/id',userController.getUser);
+router.put("/:id", userController.updateUser);
 
 module.exports = router;

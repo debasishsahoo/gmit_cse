@@ -1,7 +1,7 @@
+const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 require("dotenv").config();
-const SALT = parseInt(process.env.SALT, 10);
-const SECRET_KEY = process.env.JWT_SECRET
+const SECRET_KEY = process.env.JWT_SECRET;
 
 const userServices = {
   INSERT: async (userPayload) => {
@@ -18,7 +18,7 @@ const userServices = {
     if (!user) throw new Error("Invalid email or password");
 
     // Compare password using model method
-    const isMatch = await userModel.comparePassword(password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch) throw new Error("Invalid email or password");
 
     // Generate JWT token
@@ -26,24 +26,18 @@ const userServices = {
       expiresIn: "1h",
     });
   },
-  CHANGE_PASSWORD:async(userId, oldPassword, newPassword)=>{
+  CHANGE_PASSWORD: async (userId, oldPassword, newPassword) => {
     const user = await userModel.findById(userId).select("+password");
     if (!user) throw new Error("User not found");
 
     // Compare old password
-    const isMatch = await userModel.comparePassword(oldPassword);
+    const isMatch = await user.comparePassword(oldPassword);
     if (!isMatch) throw new Error("Incorrect old password");
 
     // Update password (hashing happens in the model)
     user.password = newPassword;
     await user.save();
   },
-
-
-
-
-
-
   VIEW_ALL: async () => {
     return await userModel.find().select("-password");
   },
@@ -52,8 +46,25 @@ const userServices = {
     if (!user) throw new Error("User not found");
     return user;
   },
-  UPDATE: async (id) => {},
-  DELETE: async (id) => {return await userModel.findByIdAndDelete(id);},
+  UPDATE: async (id, updatePayload) => {
+    const user = await userModel.findById(id);
+    if (!user) throw new Error("User not found");
+   
+
+    if (updatePayload.email && updatePayload.email !== user.email) {
+      const emailExists = await userModel.findOne({ email: updatePayload.email });
+      if (emailExists) throw new Error("Email is already in use");
+    }
+
+   
+    Object.assign(user, updatePayload);
+    await user.save();
+
+    return user.toJSON();
+  },
+  DELETE: async (id) => {
+    return await userModel.findByIdAndDelete(id);
+  },
 };
 
 module.exports = userServices;
